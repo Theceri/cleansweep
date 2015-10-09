@@ -1,0 +1,18 @@
+[remote:children]
+staging
+production-karnataka
+
+[servers:children]
+staging
+production-karnataka
+local
+
+[staging]
+test.missionvistaar.in nickname=staging vm=0 branch=master hostname=test.missionvistaar.in
+
+[production-karnataka]
+ka.aapvol.in nickname=ka vm=0 branch=master hostname=ka.aapvol.in
+
+[local]
+localhost nickname=local vm=1 branch=master ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222 ansible_user=vagrant
+

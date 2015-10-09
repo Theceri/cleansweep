@@ -1,0 +1,13 @@
+---
+- name: restart nginx
+  service: name=nginx state=restarted
+  sudo_user: root
+
+- name: reload nginx
+  service: name=nginx state=reloaded
+  sudo_user: root
+
+- name: restart supervisor services
+  supervisorctl: name={{ item }} state=restarted
+  with_items: "{{ supervisord_processes }}"
+  sudo_user: root

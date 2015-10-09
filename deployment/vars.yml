@@ -1,0 +1,23 @@
+---
+project_name: cleansweep
+project_root: /opt/cleansweep
+hostname: ka.aapvol.in
+project_repo: git://github.com/AamAadmiParty/cleansweep.git
+system_packages:
+  - build-essential
+  - git
+  - nginx
+  - postgresql
+  - python-dev
+  - python-setuptools
+  - redis-server
+  - supervisor
+  - python-psycopg2
+  - libpq-dev
+python_packages:
+  - pip
+  - virtualenv
+supervisord_processes:
+  - cleansweep-webapp
+  - cleansweep-worker
+

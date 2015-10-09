@@ -1,0 +1,22 @@
+---
+- hosts: all
+  vars_files:
+    - vars.yml
+  gather_facts: false
+  sudo: true
+  sudo_user: cleansweep
+
+  tasks:
+  - name: Pull sources from the repository.
+    git: repo={{ project_repo }} dest={{ project_root }}/code/ version={{ branch }}
+    when: vm == 0
+    notify:
+      - restart supervisor services
+
+  - name: Upgrade the virtualenv.
+    pip: requirements={{ project_root }}/code/requirements.txt virtualenv={{ project_root }}/env/
+    notify:
+      - restart supervisor services
+
+  handlers:
+    - include: handlers.yml
