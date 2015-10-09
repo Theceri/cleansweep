@@ -8,7 +8,7 @@
 
   tasks:
   - name: Pull sources from the repository.
-    git: repo={{ project_repo }} dest={{ project_root }}/code/ version={{ branch }}
+    git: repo={{ project_repo }} dest={{ project_root }}/code/ version={{ branch }} accept_hostkey=yes
     when: vm == 0
     notify:
       - restart supervisor services
